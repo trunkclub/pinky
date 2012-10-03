@@ -11,7 +11,8 @@ gem 'httparty'
 gem 'json'
 
 group :test, :development do
-  gem 'fakeweb'
+  #gem 'fakeweb'
+  gem 'timecop'
   gem "rspec", ">= 2.11.0"
 end
 

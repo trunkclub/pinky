@@ -5,6 +5,8 @@ module Pinky
       base.extend ModelFetchMethods
     end
 
+    attr_reader :cached_at
+
     def initialize hash
       @hash = hash
       hash.keys.each do |method|
@@ -12,6 +14,7 @@ module Pinky
           @hash[method]
         end
       end
+      @cached_at = DateTime.now
     end
 
     def natural_key

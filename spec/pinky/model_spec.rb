@@ -1,4 +1,5 @@
 require File.expand_path '../../spec_helper', __FILE__
+require 'date'
 
 module Pinky
   describe Model do
@@ -38,16 +39,28 @@ module Pinky
 
       context 'sucessfull initialization' do
         before do
-          @gallow_member = member_klass.new @hash
+          @member = member_klass.new @hash
         end
 
         it 'should respond to token' do 
-          @gallow_member.respond_to?(:token).should be_true
-          @gallow_member.token.should == 'fakeToken123'
+          @member.respond_to?(:token).should be_true
+          @member.token.should == 'fakeToken123'
         end
 
         it 'should create a natural key' do
-          @gallow_member.natural_key.should_not be_nil
+          @member.natural_key.should_not be_nil
+        end
+
+      end
+
+      context 'cached_at' do
+        it 'knows when it was created in the the cache' do
+          now = DateTime.new 2012, 05, 12, 06, 30, 22
+
+          Timecop.freeze(now) do
+            member = member_klass.new @hash
+            member.cached_at.should == now
+          end
         end
       end
     end

@@ -28,8 +28,9 @@ module Pinky
     def from_wire natural_key
       url = _fetch_url_for natural_key
       response = HTTParty.get url
+      response = JSON.parse(response.body)
       raise Exception.new "Error fetching from #{url}#{$/}#{response['errors'].join ','}" unless response['success']
-      response = JSON.parse(response.body)['response']
+      response = response['response']
       response = response.fetch @fetch_opts[:response_key] if @fetch_opts[:response_key]
       response
     end
