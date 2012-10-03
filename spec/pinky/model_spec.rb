@@ -37,20 +37,13 @@ module Pinky
         expect { member_klass.new @hash }.to_not raise_error
       end
 
-      context 'sucessfull initialization' do
-        before do
-          @member = member_klass.new @hash
-        end
+      before do
+        @member = member_klass.new @hash
+      end
 
-        it 'should respond to token' do 
-          @member.respond_to?(:token).should be_true
-          @member.token.should == 'fakeToken123'
-        end
-
-        it 'should create a natural key' do
-          @member.natural_key.should_not be_nil
-        end
-
+      it 'should respond to token' do 
+        @member.respond_to?(:token).should be_true
+        @member.token.should == 'fakeToken123'
       end
 
       context 'cached_at' do

@@ -1,5 +1,9 @@
 module Pinky
   module ModelFetchMethods
+    def self.included base
+      base.send :include, ModelNaturalKeyMethods unless base.response_to? :natural_key
+    end
+
     def find natural_key
       cache[natural_key.to_s]
     end
