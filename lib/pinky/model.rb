@@ -1,7 +1,7 @@
 module Pinky
   module Model
     def self.included base
-      base.extend ModelFetchMethods unless base.respond_to?(:find)
+      base.extend ModelFetchMethods unless base.is_a? ModelFetchMethods
       base.extend ClassMethods
     end
 
