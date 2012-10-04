@@ -1,7 +1,7 @@
 module Pinky
   module ModelFetchMethods
-    def self.included base
-      base.send :include, ModelNaturalKeyMethods unless base.response_to? :natural_key
+    def self.extended base
+      base.send :include, ModelNaturalKeyMethods unless base.respond_to?(:natural_key)
     end
 
     def find natural_key
@@ -9,7 +9,7 @@ module Pinky
     end
 
     def fetch_url url, fetch_opts = {}
-      @fetch_url = url
+      @fetch_url  = url
       @fetch_opts = fetch_opts
     end
 

@@ -1,9 +1,8 @@
 module Pinky
   module Model
     def self.included base
+      base.extend ModelFetchMethods unless base.respond_to?(:find)
       base.extend ClassMethods
-      base.send :include, ModelNaturalKeyMethods
-      base.extend ModelFetchMethods
     end
 
     attr_reader :cached_at

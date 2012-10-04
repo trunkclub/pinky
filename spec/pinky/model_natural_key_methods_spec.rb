@@ -1,8 +1,7 @@
 require File.expand_path '../../spec_helper', __FILE__
-require 'date'
 
 module Pinky
-  describe Model do
+  describe ModelNaturalKeyMethods do
 
     context 'with natural_key declared' do
       klass = Class.new do
