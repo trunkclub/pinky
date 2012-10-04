@@ -6,7 +6,9 @@ module Pinky
     member_klass = Class.new do
       extend Pinky::ModelFetchMethods
       natural_key :id
-      fetch_url 'http://fake.com/member/:natural_key', :response_key => 'members'
+      fetch_url 'http://fake.com/member?id=:natural_key', :response_key => 'members',
+        :headers => { 'Accept' => 'version=1' },
+        :query   => { 'token'  => '123' }
 
       def initialize hash; @hash = hash end
       def id; @hash['id'] end
@@ -26,8 +28,11 @@ module Pinky
 
     context '#find' do
       before do
-        url = 'http://fake.com/member/4255'
-        HTTParty.should_receive(:get).with(url).once.and_return(stub(:body => @response))
+        url = 'http://fake.com/member?id=4255'
+        HTTParty.should_receive(:get).with(url,
+                                           :headers => { 'Accept' => 'version=1' },
+                                           :query   => { 'token'  => '123' }
+                                          ).once.and_return(stub(:body => @response))
       end
 
       after { member_klass.clear_cache }
