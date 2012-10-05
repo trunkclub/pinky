@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "pinky"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Joel Friedman"]
-  s.date = "2012-10-04"
+  s.date = "2012-10-05"
   s.description = "TODO: longer description of your gem"
   s.email = "asher.friedman@gmail.com"
   s.extra_rdoc_files = [
@@ -26,10 +26,13 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/pinky.rb",
+    "lib/pinky/associations.rb",
     "lib/pinky/cachable_model.rb",
     "lib/pinky/model.rb",
     "lib/pinky/model_fetch_methods.rb",
     "lib/pinky/model_natural_key_methods.rb",
+    "pinky.gemspec",
+    "spec/pinky/associations_spec.rb",
     "spec/pinky/cachable_model_spec.rb",
     "spec/pinky/model_fetch_methods_spec.rb",
     "spec/pinky/model_natural_key_methods_spec.rb",
