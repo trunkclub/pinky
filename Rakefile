@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "pinky"
   gem.homepage = "http://github.com/trunkclub/pinky"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{in memory API caching made easy}
+  gem.description = %Q{Cache your api objects in member easier, with associations.}
   gem.email = "asher.friedman@gmail.com"
   gem.authors = ["Joel Friedman"]
   # dependencies defined in Gemfile
