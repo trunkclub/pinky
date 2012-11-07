@@ -15,6 +15,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "pinky"
+  gem.platform = 'java'
   gem.homepage = "http://github.com/trunkclub/pinky"
   gem.license = "MIT"
   gem.summary = %Q{in memory API caching made easy}

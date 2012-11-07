@@ -6,10 +6,11 @@
 Gem::Specification.new do |s|
   s.name = "pinky"
   s.version = "0.0.2"
+  s.platform = "java"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Joel Friedman"]
-  s.date = "2012-10-11"
+  s.date = "2012-11-07"
   s.description = "Cache your api objects in member easier, with associations."
   s.email = "asher.friedman@gmail.com"
   s.extra_rdoc_files = [
@@ -28,6 +29,8 @@ Gem::Specification.new do |s|
     "lib/pinky.rb",
     "lib/pinky/associations.rb",
     "lib/pinky/cachable_model.rb",
+    "lib/pinky/energizer_bunny/connection.rb",
+    "lib/pinky/energizer_bunny/subscription.rb",
     "lib/pinky/model.rb",
     "lib/pinky/model_fetch_methods.rb",
     "lib/pinky/model_natural_key_methods.rb",
@@ -51,6 +54,8 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<httparty>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
+      s.add_runtime_dependency(%q<hot_bunnies>, [">= 0"])
+      s.add_runtime_dependency(%q<mailbox>, [">= 0"])
       s.add_development_dependency(%q<timecop>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 2.11.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
@@ -59,6 +64,8 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<httparty>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
+      s.add_dependency(%q<hot_bunnies>, [">= 0"])
+      s.add_dependency(%q<mailbox>, [">= 0"])
       s.add_dependency(%q<timecop>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 2.11.0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
@@ -68,6 +75,8 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<httparty>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
+    s.add_dependency(%q<hot_bunnies>, [">= 0"])
+    s.add_dependency(%q<mailbox>, [">= 0"])
     s.add_dependency(%q<timecop>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 2.11.0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
