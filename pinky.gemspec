@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "pinky"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
   s.platform = "java"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Joel Friedman"]
-  s.date = "2012-11-07"
+  s.date = "2012-11-26"
   s.description = "Cache your api objects in member easier, with associations."
   s.email = "asher.friedman@gmail.com"
   s.extra_rdoc_files = [
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/pinky/cachable_model.rb",
     "lib/pinky/energizer_bunny/connection.rb",
     "lib/pinky/energizer_bunny/subscription.rb",
+    "lib/pinky/exceptions.rb",
     "lib/pinky/model.rb",
     "lib/pinky/model_fetch_methods.rb",
     "lib/pinky/model_natural_key_methods.rb",
