@@ -5,7 +5,11 @@ module Pinky
       find_by          = opts[:lookup_by] || "#{klass_name}_id"
       association_name = opts[:as] || klass_name
       define_method association_name do
-        klass.find send(find_by)
+        begin
+          klass.find send(find_by)
+        rescue NotFoundException
+          raise unless opts[:allow_nil]
+        end
       end
     end
   end

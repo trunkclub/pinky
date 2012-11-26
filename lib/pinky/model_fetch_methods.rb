@@ -23,7 +23,8 @@ module Pinky
       raise Exception.new "Error fetching from #{url}#{$/}#{response['errors'].join ','}" unless response['success']
       response = response['response']
       response = response.fetch @response_key if @response_key
-      raise Exception.new "More than one model was returned" if response.size != 1
+      raise NotFoundException.new "No model found for natural_key #{natural_key}" if response.empty?
+      raise TooManyFoundException.new "More than one model was returned" if response.size > 1
       response.first
     end
 
