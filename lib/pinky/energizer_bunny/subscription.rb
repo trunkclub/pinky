@@ -19,7 +19,6 @@ module Pinky
       def listen!
         @subscription = @queue.subscribe(@subscription_opts) do |headers, msg|
           handle_message_on_other_thread headers, msg
-          headers.ack
         end
         self
       end
@@ -27,6 +26,7 @@ module Pinky
       mailslot :exception => :log_error
       def handle_message_on_other_thread headers, msg
         @handle_message.call headers.properties.headers, msg
+        headers.ack
       end
 
       def log_error e
