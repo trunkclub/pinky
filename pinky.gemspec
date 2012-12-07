@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Joel Friedman"]
-  s.date = "2012-12-06"
+  s.date = "2012-12-07"
   s.description = "Cache your api objects in member easier, with associations."
   s.email = "asher.friedman@gmail.com"
   s.extra_rdoc_files = [
@@ -56,7 +56,6 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<httparty>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
       s.add_runtime_dependency(%q<hot_bunnies>, [">= 0"])
-      s.add_runtime_dependency(%q<mailbox>, [">= 0"])
       s.add_development_dependency(%q<timecop>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 2.11.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
@@ -66,7 +65,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<httparty>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<hot_bunnies>, [">= 0"])
-      s.add_dependency(%q<mailbox>, [">= 0"])
       s.add_dependency(%q<timecop>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 2.11.0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
@@ -77,7 +75,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<httparty>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
     s.add_dependency(%q<hot_bunnies>, [">= 0"])
-    s.add_dependency(%q<mailbox>, [">= 0"])
     s.add_dependency(%q<timecop>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 2.11.0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])

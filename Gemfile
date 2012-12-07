@@ -13,7 +13,6 @@ gem 'json'
 platform :jruby do
   # energizer
   gem 'hot_bunnies'
-  gem 'mailbox'
 end
 
 group :test, :development do
