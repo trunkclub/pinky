@@ -47,7 +47,7 @@ module Pinky
 
       #TODO: is having one channel bad, should this be one per exchange?
       def channel
-        @channel ||= @connection.create_channel
+        @channel ||= @connection.create_channel.tap { |c| c.prefetch = (@config.delete(:prefetch_count) || 1) }
       end
 
       def create_queue topic_key
