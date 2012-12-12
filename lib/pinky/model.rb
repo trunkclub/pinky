@@ -1,7 +1,8 @@
 module Pinky
   module Model
     def self.included base
-      base.extend ModelFetchMethods unless base.is_a? ModelFetchMethods
+      base.extend HasCaches unless base.is_a?(HasCaches)
+      base.extend ModelFetchMethods unless base.is_a?(ModelFetchMethods)
       base.extend ClassMethods
     end
 

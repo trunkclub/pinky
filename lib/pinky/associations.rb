@@ -6,7 +6,7 @@ module Pinky
       association_name = opts[:as] || klass_name
       define_method association_name do
         begin
-          klass.find send(find_by)
+          klass.find :id => send(find_by)
         rescue NotFoundException
           raise unless opts[:allow_nil]
         end

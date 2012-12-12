@@ -4,8 +4,6 @@ module Pinky
   describe Model do
     member_klass = Class.new do
       include Pinky::Model
-      natural_key :id
-
       def full_name
         "#{first_name} #{last_name}"
       end
