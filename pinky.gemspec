@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "pinky"
-  s.version = "0.1.4"
+  s.version = "1.0.0"
   s.platform = "java"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
