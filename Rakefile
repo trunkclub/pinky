@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "pinky"
 
   # FIXME: jf (12.12.12) removing due to bug in Bundler
-  #gem.platform = 'java'
+  gem.platform = 'java'
 
   gem.homepage = "http://github.com/trunkclub/pinky"
   gem.license = "MIT"
