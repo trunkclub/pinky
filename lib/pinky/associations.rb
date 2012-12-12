@@ -5,11 +5,9 @@ module Pinky
       find_by          = opts[:lookup_by] || "#{klass_name}_id"
       association_name = opts[:as] || klass_name
       define_method association_name do
-        begin
-          klass.find :id => send(find_by)
-        rescue NotFoundException
-          raise unless opts[:allow_nil]
-        end
+        lookup_value = send(find_by)
+        association_model = lookup_value.nil? ? nil : klass.find(:id => lookup_value) rescue nil
+        raise NotFoundException.new if association_model.nil? && !opts[:allow_nil]
       end
     end
   end

@@ -22,7 +22,7 @@ module Pinky
       raise Exception.new 'Error fetching from results' unless response.success?
       response_hash = hash_from_pinky_response(response) rescue nil
       if response_hash.is_a?(Array)
-        raise TooManyFoundException.new "More than one model was returned" if response_hash.size != 1
+        raise TooManyFoundException.new "More than one model was returned" if response_hash.size > 1
         response_hash = response_hash.first
       end
       raise NotFoundException.new "No model found for query #{query.inspect}" if response_hash.nil?
