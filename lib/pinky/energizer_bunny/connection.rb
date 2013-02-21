@@ -20,6 +20,11 @@ module Pinky
         @subscriptions << Subscription.new(@queues[topic_key], subscription_opts, @logger, block)
       end
 
+      def publish topic_key, message, opts = {}
+        add_message_id_to_header! opts
+        @exchanges[topic_key].publish message, opts if enabled?
+      end
+
       def connected?
         @connection && @connection.open?
       end
@@ -72,6 +77,15 @@ module Pinky
         end
         @connection.close
         @connection = nil
+      end
+
+      def add_message_id_to_header!(opts)
+        opts[:headers] ||= {}
+        opts[:headers]['message_id'] ||= guid_generator.generate
+      end
+
+      def guid_generator
+        @guid_generator ||= UUID.new
       end
     end
   end

@@ -7,7 +7,7 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 
 gem 'httparty'
-
+gem 'uuid', '2.3.6'
 gem 'json'
 
 platform :jruby do
