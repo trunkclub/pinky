@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "pinky"
-  s.version = "0.2.6"
+  s.version = "0.2.7"
   s.platform = "java"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Joel Friedman"]
-  s.date = "2013-02-21"
+  s.date = "2013-03-22"
   s.description = "Cache your api objects in member easier, with associations."
   s.email = "asher.friedman@gmail.com"
   s.extra_rdoc_files = [
