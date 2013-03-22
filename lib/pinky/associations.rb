@@ -8,6 +8,7 @@ module Pinky
         lookup_value = send(find_by)
         association_model = lookup_value.nil? ? nil : klass.find(:id => lookup_value) rescue nil
         raise NotFoundException.new if association_model.nil? && !opts[:allow_nil]
+        association_model
       end
     end
   end
