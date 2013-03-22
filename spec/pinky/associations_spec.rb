@@ -21,7 +21,7 @@ module Pinky
 
     it 'looks up employee by employee_id' do
       member = member_klass.new 123
-      Employee.should_receive(:find).with(:id => 123)
+      Employee.should_receive(:find).with(:id => 123).and_return stub
       FooBar.should_not_receive(:find)
 
       member.employee
@@ -29,7 +29,7 @@ module Pinky
 
     it 'looks up FooBar by employee_id' do
       member = member_klass.new 999
-      FooBar.should_receive(:find).with(:id => 999)
+      FooBar.should_receive(:find).with(:id => 999).and_return stub
       Employee.should_not_receive(:find)
 
       member.foobar
