@@ -4,8 +4,9 @@ module Pinky
       import java.util.concurrent.Executors
 
       def initialize queue, subscription_opts, logger, handle_message
-        @queue, @subscription_opts, @logger, @handle_message = queue, subscription_opts, logger, handle_message
-        @subscription_opts[:executor] = executor  unless @subscription_opts[:executor]
+        @queue, @subscription_opts, @logger, @handle_message = queue, subscription_opts.dup, logger, handle_message
+        @reraise_errors = @subscription_opts.delete(:reraise_errors)
+        @subscription_opts[:executor] = executor unless @subscription_opts[:executor]
         listen!
       end
 
@@ -19,8 +20,13 @@ module Pinky
       private
       def listen!
         @subscription = @queue.subscribe(@subscription_opts) do |headers, msg|
-          @handle_message.call headers.properties.headers, msg
-          headers.ack
+          begin
+            @handle_message.call headers.properties.headers, msg
+            headers.ack
+          rescue => e
+            @logger.error "!!!Error handling message: #{e.message}"
+            raise if @reraise_errors
+          end
         end
         self
       end
