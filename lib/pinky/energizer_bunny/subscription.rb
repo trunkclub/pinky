@@ -25,7 +25,7 @@ module Pinky
             headers.ack
           rescue => e
             @logger.error "!!!Error handling message: #{e.message}"
-            headers.nack
+            headers.reject
             raise if @reraise_errors
           end
         end
