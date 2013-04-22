@@ -58,7 +58,9 @@ module Pinky
       def create_queue topic_key
         queue_hash = @config[:queues][topic_key]
         raise Exception.new("Cannot find queue configuration for queue: #{topic_key}") if queue_hash.nil?
-        channel.queue(queue_hash[:name], queue_hash[:opts]).tap do |queue|
+        queue_opts = queue_hash[:opts]
+        queue_opts[:durable] = true unless queue_opts.key? :durable
+        channel.queue(queue_hash[:name], queue_opts).tap do |queue|
           queue_bind_opts = queue_hash[:bind_opts] || {}
           Array(queue_hash[:bindings]).each do |binding|
             binding_opts = queue_bind_opts.merge(binding[:binding_opts] || {})

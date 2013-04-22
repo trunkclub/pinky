@@ -41,7 +41,7 @@ module Pinky
       "/#{name.to_s.downcase}"
     end
 
-    def pinky_request_headers
+    def pinky_request_headers(query)
       {}
     end
 
