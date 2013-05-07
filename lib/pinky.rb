@@ -1,6 +1,7 @@
 require 'json'
 require 'httparty'
 require 'date'
+require 'uuid'
 
 require 'hot_bunnies'
 
