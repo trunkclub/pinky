@@ -4,6 +4,8 @@ module Pinky
   module EnergizerBunny
     class Connection
 
+      DEAD_LETTER_EXCHANGE_NAME = 'DEAD.LETTER'
+
       def initialize config, logger = Rails.logger
         @config = config
         @logger = logger
@@ -13,6 +15,7 @@ module Pinky
         @queues    = Hash.new { |queues, topic_key|    queues[topic_key]    = create_queue topic_key }
         @subscriptions = []
         create_connection
+        channel.exchange DEAD_LETTER_EXCHANGE_NAME, :type => :headers, :auto_delete => false, :durable => true
       end
 
       def subscribe topic_key, subscription_opts = {}, &block
@@ -60,6 +63,7 @@ module Pinky
         raise Exception.new("Cannot find queue configuration for queue: #{topic_key}") if queue_hash.nil?
         queue_opts = queue_hash[:opts]
         queue_opts[:durable] = true unless queue_opts.key? :durable
+        queue_opts[:arguments] = { 'x-dead-letter-exchange' =>  DEAD_LETTER_EXCHANGE_NAME }.merge(queue_opts.fetch(:arguments, {}))
         channel.queue(queue_hash[:name], queue_opts).tap do |queue|
           queue_bind_opts = queue_hash[:bind_opts] || {}
           Array(queue_hash[:bindings]).each do |binding|

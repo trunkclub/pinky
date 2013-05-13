@@ -20,12 +20,12 @@ module Pinky
       private
       def listen!
         @subscription = @queue.subscribe(@subscription_opts) do |headers, msg|
+          message = Message.new(headers, msg)
           begin
-            @handle_message.call headers.properties.headers, msg
-            headers.ack
+            @handle_message.call message
           rescue => e
-            @logger.error "!!!Error handling message: #{e.message}"
-            headers.reject
+            @logger.error "!!!Error handling message: #{e.inspect}"
+            message.reject
             raise if @reraise_errors
           end
         end
