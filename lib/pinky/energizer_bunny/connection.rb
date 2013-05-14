@@ -2,8 +2,9 @@ require File.expand_path('../subscription', __FILE__)
 
 module Pinky
   module EnergizerBunny
-    class Connection
+    class ConfigurationError < StandardError ; end
 
+    class Connection
       def initialize config, logger = Rails.logger
         @config = config
         @logger = logger
@@ -45,7 +46,7 @@ module Pinky
 
       def create_connection
         url = connection_url
-        raise Exception.new('Please set a broker url for RabbitMQ') if enabled? && url.nil?
+        raise ConfigurationError.new('Please set a broker url for RabbitMQ') if enabled? && url.nil?
         @logger.info "Connecting bunny to: #{url}"
         @connection = HotBunnies.connect :uri => url
       end
@@ -57,7 +58,7 @@ module Pinky
 
       def create_queue topic_key
         queue_hash = @config[:queues][topic_key]
-        raise Exception.new("Cannot find queue configuration for queue: #{topic_key}") if queue_hash.nil?
+        raise ConfigurationError.new("Cannot find queue configuration for queue: #{topic_key}") if queue_hash.nil?
         queue_opts = queue_hash[:opts]
         queue_opts[:durable] = true unless queue_opts.key? :durable
         channel.queue(queue_hash[:name], queue_opts).tap do |queue|

@@ -1,7 +1,7 @@
 module Pinky
-  class NotFoundException < Exception
+  class NotFoundException < StandardError
   end
 
-  class TooManyFoundException < Exception
+  class TooManyFoundException < StandardError
   end
 end
