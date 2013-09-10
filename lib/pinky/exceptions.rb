@@ -4,4 +4,7 @@ module Pinky
 
   class TooManyFoundException < StandardError
   end
+
+  class ItemFetchException < StandardError
+  end
 end

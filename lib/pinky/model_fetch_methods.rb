@@ -19,7 +19,7 @@ module Pinky
       response = HTTParty.get pinky_request_url(query),
         :query   => pinky_request_query_params(query),
         :headers => pinky_request_headers(query)
-      raise Exception.new 'Error fetching from results' unless response.success?
+      raise ItemFetchException.new [response.code, response.body] unless response.success?
       response_hash = hash_from_pinky_response(response) rescue nil
       if response_hash.is_a?(Array)
         raise TooManyFoundException.new "More than one model was returned" if response_hash.size > 1
