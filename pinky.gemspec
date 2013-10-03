@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "pinky"
-  s.version = "2.0.0"
+  s.version = "2.0.1"
   s.platform = "java"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/pinky/cache.rb",
     "lib/pinky/exceptions.rb",
     "lib/pinky/has_caches.rb",
+    "lib/pinky/lru_cache.rb",
     "lib/pinky/model.rb",
     "lib/pinky/model_fetch_methods.rb",
     "pinky.gemspec",
