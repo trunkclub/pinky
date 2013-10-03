@@ -5,8 +5,8 @@ module Pinky
     context 'with cachable_by declared' do
       klass = Class.new do
         extend Pinky::HasCaches
-        cachable_by :token
-        cachable_by :id, :foo
+        cachable_by method_names: :token
+        cachable_by method_names: [:id, :foo]
 
         attr_reader :id, :foo, :bar, :token
         def initialize id, foo, bar, token

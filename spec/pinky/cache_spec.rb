@@ -3,7 +3,7 @@ require 'date'
 
 module Pinky
   describe Cache do
-    let(:cache) { Cache.new :id, :name }
+    let(:cache) { Cache.new([:id, :name], 100) }
 
     context 'Cache#name_for' do
       it { Cache.name_for(:id).should == 'cache_by_id' }
@@ -35,6 +35,22 @@ module Pinky
         cache.update_with(item, :create)
         cache.update_with(item, :destroy)
         cache.empty?.should be_true
+      end
+
+      it 'should only store 20 items if capacity is capped at 20' do
+        cache = Cache.new([:id, :name], 2)
+        10.times {|i| cache.update_with(mock(id: i, name: 'foo'), :create) }
+        cache.send(:cache).size.should == 2
+      end
+
+      it 'orders most recently used items ordered by usage' do
+        cache = Cache.new([:id, :name], 5)
+        10.times do |i|
+          cache.update_with(mock(id: i, name: 'foo'), :create)
+          cache.query(:id => 5, :name => 'foo')
+          cache.query(:id => 7, :name => 'foo')
+        end
+        cache.send(:cache).keys.last(2).should == ['5.foo', '7.foo']
       end
     end
 

@@ -1,7 +1,7 @@
-module Pinky
+module Pinky  
   module HasCaches
-    def cachable_by(*methods)
-      create_cache_for methods
+    def cachable_by(opts)
+      create_cache_for opts[:method_names], opts[:capacity]
     end
 
     def update_caches_with(item_hash, action = :create)
@@ -15,8 +15,8 @@ module Pinky
     end
 
     private
-    def create_cache_for(method_names)
-      cache = Cache.new method_names
+    def create_cache_for(method_names, capacity)
+      cache = Cache.new(method_names, capacity || 100)
       pinky_caches_by_name[cache.name] = cache
     end
 
@@ -27,7 +27,5 @@ module Pinky
     def pinky_caches
       pinky_caches_by_name.values
     end
-
   end
-
 end
