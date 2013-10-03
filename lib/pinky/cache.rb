@@ -2,7 +2,7 @@ module Pinky
   class Cache
     extend Forwardable
 
-    attr_reader :name
+    attr_reader :name, :capacity
     def_delegators :cache, :size, :count, :empty?
 
     class << self
@@ -11,8 +11,9 @@ module Pinky
       end
     end
 
-    def initialize(*item_methods)
-      @item_methods = item_methods.flatten.sort
+    def initialize(item_methods, capacity)
+      @capacity = capacity
+      @item_methods = [item_methods].flatten.sort
       @name = self.class.name_for(@item_methods)
     end
 
@@ -25,13 +26,13 @@ module Pinky
       if action == :destroy
         cache.delete key
       else
-        cache[key] = item
+        cache.put(key, item)
       end
     end
 
     def query(query_hash = {})
       key = query_hash.sort.map { |k,v| v }.join '.'
-      cache[key]
+      cache.get(key)
     end
 
     def clear_cache
@@ -44,7 +45,7 @@ module Pinky
     end
 
     def cache
-      @cache ||= {}
+      @cache ||= Collections.synchronizedMap(LruCache.new(@capacity));
     end
   end
 end

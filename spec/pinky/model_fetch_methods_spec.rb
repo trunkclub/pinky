@@ -5,7 +5,7 @@ module Pinky
     context 'caches' do
       member_klass = Class.new do
         extend Pinky::ModelFetchMethods
-        cachable_by :id
+        cachable_by method_names: :id
 
         def initialize hash; @hash = hash end
         def id; @hash[:id] end
